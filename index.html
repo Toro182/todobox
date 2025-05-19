@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TodoBox - Tu tienda de todo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function filtrarProductos() {
+      const filtro = document.getElementById("busqueda").value.toLowerCase();
+      const productos = document.querySelectorAll(".producto");
+      productos.forEach(p => {
+        const texto = p.innerText.toLowerCase();
+        p.style.display = texto.includes(filtro) ? "block" : "none";
+      });
+    }
+
+    function filtrarCategoria(categoria) {
+      const productos = document.querySelectorAll(".producto");
+      productos.forEach(p => {
+        p.style.display = categoria === 'todos' || p.dataset.categoria === categoria ? "block" : "none";
+      });
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- HEADER -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-600">TodoBox</h1>
+    <input type="text" id="busqueda" onkeyup="filtrarProductos()" placeholder="Buscar..." class="border p-2 rounded w-1/2">
+    <a href="#checkout" class="text-sm text-white bg-indigo-500 px-3 py-1 rounded hover:bg-indigo-600">Carrito</a>
+  </header>
+
+  <!-- CATEGORÍAS -->
+  <div class="flex justify-center gap-4 py-4 bg-indigo-100">
+    <button onclick="filtrarCategoria('todos')" class="px-3 py-1 bg-white rounded hover:bg-indigo-200">Todos</button>
+    <button onclick="filtrarCategoria('hogar')" class="px-3 py-1 bg-white rounded hover:bg-indigo-200">Hogar</button>
+    <button onclick="filtrarCategoria('belleza')" class="px-3 py-1 bg-white rounded hover:bg-indigo-200">Belleza</button>
+    <button onclick="filtrarCategoria('accesorios')" class="px-3 py-1 bg-white rounded hover:bg-indigo-200">Accesorios</button>
+    <button onclick="filtrarCategoria('tecnologia')" class="px-3 py-1 bg-white rounded hover:bg-indigo-200">Tecnología</button>
+  </div>
+
+  <!-- PRODUCTOS -->
+  <section class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div class="producto" data-categoria="belleza">
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="https://cdn.pixabay.com/photo/2020/03/19/10/27/makeup-4945874_1280.jpg" class="w-full h-48 object-cover rounded">
+        <h3 class="font-bold mt-3">Organizador de Maquillaje Giratorio</h3>
+        <p class="text-indigo-600 font-semibold">$59.900</p>
+        <a href="#checkout" class="mt-2 block text-center bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600">Comprar</a>
+      </div>
+    </div>
+    <div class="producto" data-categoria="hogar">
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="https://cdn.pixabay.com/photo/2020/04/10/16/34/led-5024176_1280.jpg" class="w-full h-48 object-cover rounded">
+        <h3 class="font-bold mt-3">Luces LED Decorativas</h3>
+        <p class="text-indigo-600 font-semibold">$34.900</p>
+        <a href="#checkout" class="mt-2 block text-center bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600">Comprar</a>
+      </div>
+    </div>
+    <div class="producto" data-categoria="tecnologia">
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="https://cdn.pixabay.com/photo/2021/05/18/19/37/juice-6264292_1280.jpg" class="w-full h-48 object-cover rounded">
+        <h3 class="font-bold mt-3">Mini Licuadora Portátil USB</h3>
+        <p class="text-indigo-600 font-semibold">$79.900</p>
+        <a href="#checkout" class="mt-2 block text-center bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600">Comprar</a>
+      </div>
+    </div>
+    <div class="producto" data-categoria="accesorios">
+      <div class="bg-white rounded-lg shadow p-4">
+        <img src="https://cdn.pixabay.com/photo/2016/12/06/18/27/bracelet-1885531_1280.jpg" class="w-full h-48 object-cover rounded">
+        <h3 class="font-bold mt-3">Pulsera de Cuarzo Rosa</h3>
+        <p class="text-indigo-600 font-semibold">$19.900</p>
+        <a href="#checkout" class="mt-2 block text-center bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600">Comprar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKOUT -->
+  <section id="checkout" class="bg-white mt-10 p-6 max-w-xl mx-auto shadow rounded">
+    <h2 class="text-2xl font-bold mb-4">Finalizar compra</h2>
+    <p class="mb-2">Para finalizar tu compra, envíanos un mensaje con el nombre del producto y tu dirección.</p>
+    <p class="font-semibold">📱 Nequi: <span class="text-indigo-600">300 000 0000</span></p>
+    <a href="https://wa.me/573000000000?text=Hola%2C%20quiero%20comprar%20un%20producto%20de%20TodoBox" target="_blank" class="block mt-4 bg-green-500 text-white text-center py-2 rounded hover:bg-green-600">Pagar por WhatsApp</a>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="bg-indigo-50 mt-10 p-6 max-w-xl mx-auto rounded shadow">
+    <h2 class="text-xl font-bold mb-4">Contáctanos</h2>
+    <p class="mb-2">¿Tienes dudas o deseas comprar al por mayor? Escríbenos:</p>
+    <p class="mb-1">📧 contacto@todobox.com</p>
+    <p>📱 WhatsApp: 300 000 0000</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-10 p-4 bg-gray-100 text-center text-sm">
+    &copy; 2025 TodoBox - Todos los derechos reservados
+  </footer>
+</body>
+</html>
